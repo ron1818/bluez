@@ -3341,8 +3341,9 @@ static void session_ct_init_control(struct avrcp *session)
 							handle_vendordep_pdu,
 							session);
 	session->control_handlers = ct_control_handlers;
-	if (session->version >= 0x0104)
-		session->supported_events = (1 << AVRCP_EVENT_VOLUME_CHANGED);
+    if (session->version >= 0x0104)
+        avrcp_register_notification(session,
+                        AVRCP_EVENT_VOLUME_CHANGED);
 
 	service = btd_device_get_service(session->dev, AVRCP_TARGET_UUID);
 	if (service != NULL)
