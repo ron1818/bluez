@@ -3404,7 +3404,7 @@ static void controller_init(struct avrcp *session)
 	DBG("%p version 0x%04x", controller, controller->version);
 
 	if (controller->version >= 0x0104)
-		session->supported_events |= (1 << AVRCP_EVENT_VOLUME_CHANGED);
+		avrcp_register_notification(session, AVRCP_EVENT_VOLUME_CHANGED);
 
 	service = btd_device_get_service(session->dev, AVRCP_TARGET_UUID);
 	if (service != NULL)
